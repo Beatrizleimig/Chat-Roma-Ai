@@ -5,14 +5,44 @@ body {
 
 .chat-container {
   display: flex;
-  flex-direction: column;
-  max-width: 800px;
+  max-width: 1000px; /* Aumentei o tamanho máximo para incluir a barra lateral */
   height: 90vh;
   margin: 0 auto;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Barra lateral de usuários online */
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-right: 1px solid #ccc;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  background-color: #eee;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+/* Container principal do chat */
+.main-chat {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-container {

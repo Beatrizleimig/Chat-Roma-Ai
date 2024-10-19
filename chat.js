@@ -3,6 +3,9 @@ const socket = io();
 // Recuperar o nome do usuário do localStorage
 const username = localStorage.getItem('username') || 'Usuário Anônimo';
 
+// Informar ao servidor que o usuário se conectou
+socket.emit('userConnected', username);
+
 // Exibir mensagens recebidas no lado esquerdo ou direito com o nome e a hora
 socket.on("chat message", (msgData) => {
     const ul = document.querySelector('#messages');
@@ -24,6 +27,19 @@ socket.on("chat message", (msgData) => {
     // Rolagem automática para a última mensagem
     const container = document.querySelector('.messages-container');
     container.scrollTop = container.scrollHeight;
+});
+
+// Atualizar a lista de usuários online
+socket.on("onlineUsers", (users) => {
+    const onlineUsersUl = document.getElementById('onlineUsers');
+    onlineUsersUl.innerHTML = ''; // Limpar a lista de usuários antes de atualizar
+
+    // Adicionar cada usuário à lista de usuários online
+    users.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = user;
+        onlineUsersUl.appendChild(li);
+    });
 });
 
 // Função para enviar mensagens
